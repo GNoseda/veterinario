@@ -15,5 +15,24 @@
   <%= @client.email %>
 </p>
 
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Max Altura</th>
+      <th>Max Peso</th>
+    </tr>
+  </thead>
+  <% @client.pets.each do |pts| %>
+    <tbody>
+      <tr>
+        <td> <%= pts.name %> </td>
+        <td> <%= pts.max_height %> </td>
+        <td> <%= pts.max_weight %> </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
+
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', clients_path %>

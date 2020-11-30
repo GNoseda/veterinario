@@ -1,25 +1,27 @@
 class Pet < ApplicationRecord
   belongs_to :client
   has_many :pet_histories
-  
+
+  validates :name, :race, :birthdate, :client_id, presence: true
+
   def history_count
-    #TODO-implement
+    self.pet_histories.count
   end
 
   def avg_weight
-    #TODO-implement
+    self.pet_histories.map(&:weight).sum/self.pet_histories.count
   end
 
   def avg_height
-    #TODO-implement
+    self.pet_histories.map(&:heigth).sum/self.pet_histories.count
   end
 
   def max_weight
-    #TODO-implement
+    self.pet_histories.map(&:weight).max
   end
 
   def max_height
-    #TODO-implement
+    self.pet_histories.map(&:heigth).max
   end
 
 end

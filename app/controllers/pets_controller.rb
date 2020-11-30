@@ -4,35 +4,40 @@ class PetsController < ApplicationController
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    @client = Client.find params[:client_id]
+    @pets = @client.pets
   end
 
   # GET /pets/1
   # GET /pets/1.json
   def show
+    @client = Client.find params[:client_id]
   end
 
   # GET /pets/new
   def new
+    @client = Client.find params[:client_id]
     @pet = Pet.new
   end
 
   # GET /pets/1/edit
   def edit
+    @client = Client.find params[:client_id]
   end
 
   # POST /pets
   # POST /pets.json
   def create
+    @client = Client.find_by params[:client_id]
     @pet = Pet.new(pet_params)
+
+    @pet.client = @client
 
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
-        format.json { render :show, status: :created, location: @pet }
+        format.html { redirect_to client_pet_path(@client, @pet), notice: 'Pet was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @pet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,13 +45,12 @@ class PetsController < ApplicationController
   # PATCH/PUT /pets/1
   # PATCH/PUT /pets/1.json
   def update
+    @client = Client.find params[:client_id]
     respond_to do |format|
       if @pet.update(pet_params)
-        format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pet }
+        format.html { redirect_to client_pet_path(@client,@pet), notice: 'Pet was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @pet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,10 +58,10 @@ class PetsController < ApplicationController
   # DELETE /pets/1
   # DELETE /pets/1.json
   def destroy
+    @client = Client.find params[:client_id]
     @pet.destroy
     respond_to do |format|
-      format.html { redirect_to pets_url, notice: 'Pet was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to client_pets_path(@client), notice: 'Pet was successfully destroyed.' }
     end
   end
 
