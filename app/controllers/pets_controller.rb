@@ -16,6 +16,7 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
+
     @client = Client.find params[:client_id]
     @pet = Pet.new
   end
@@ -28,14 +29,15 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
-    @client = Client.find_by params[:client_id]
+    
+    @client = Client.find params[:client_id].to_i
     @pet = Pet.new(pet_params)
 
     @pet.client = @client
 
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to client_pet_path(@client, @pet), notice: 'Pet was successfully created.' }
+        format.html { redirect_to client_pet_path(@client, @pet), notice: 'Mascota registrada exitosamente.' }
       else
         format.html { render :new }
       end
@@ -48,7 +50,7 @@ class PetsController < ApplicationController
     @client = Client.find params[:client_id]
     respond_to do |format|
       if @pet.update(pet_params)
-        format.html { redirect_to client_pet_path(@client,@pet), notice: 'Pet was successfully updated.' }
+        format.html { redirect_to client_pet_path(@client,@pet), notice: 'Datos de mascota actualizados.' }
       else
         format.html { render :edit }
       end
@@ -61,7 +63,7 @@ class PetsController < ApplicationController
     @client = Client.find params[:client_id]
     @pet.destroy
     respond_to do |format|
-      format.html { redirect_to client_pets_path(@client), notice: 'Pet was successfully destroyed.' }
+      format.html { redirect_to client_pets_path(@client), notice: 'Mascota eliminada... Todos los perritos van al cielo' }
     end
   end
 

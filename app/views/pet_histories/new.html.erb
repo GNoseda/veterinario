@@ -1,5 +1,8 @@
-<h1>New Pet History</h1>
+<div class="container">
+    <h3>Control de <%= @pet.name %> </h3>
+    <br>
+    <%= render 'form', pet_history: @pet_history %>
 
-<%= render 'form', pet_history: @pet_history %>
-
-<%= link_to 'Back', client_pet_pet_histories_path(@client, @pet) %>
+    <br>
+    <%= link_to 'Historial de '+@pet.name , client_pet_pet_histories_path(@client, @pet) %>
+</div>

@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-  <h2>Mascotas de <%= @client.name %> </h2>
+  <div class="row">
+    <h2 class="mx-2">Mascotas de <%= @client.name %> </h2>
+    <%= button_to "Registrar nueva mascota", new_client_pet_path(@client), method: "get", class: "mx-2"%>
+  </div>
 
   <table class="table text-center">
     <thead>
@@ -28,9 +31,5 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= button_to "Registrar nueva mascota", new_client_pet_path(@client), method: "get", class: "mx-2"%>
-  <br>
   <%= link_to 'Menú de clientes', clients_path %>
 </div>

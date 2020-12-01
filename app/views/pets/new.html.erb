@@ -4,5 +4,5 @@
     <%= render 'form', pet: @pet %>
 
     <br>
-    <%= link_to 'Volver a mascotas', client_pets_path(@client) %>
+    <%= link_to 'Mascotas de ' + @client.name , client_pets_path(@client) %>
 </div>

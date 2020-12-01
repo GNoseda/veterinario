@@ -4,37 +4,37 @@ class PetHistoriesController < ApplicationController
   # GET /pet_histories
   # GET /pet_histories.json
   def index
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
     @pet_histories = @pet.pet_histories
   end
 
   # GET /pet_histories/1
   # GET /pet_histories/1.json
   def show
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
   end
 
   # GET /pet_histories/new
   def new
     @pet_history = PetHistory.new
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
   end
 
   # GET /pet_histories/1/edit
   def edit
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
   end
 
   # POST /pet_histories
   # POST /pet_histories.json
   def create
     @pet_history = PetHistory.new(pet_history_params)
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
 
     @pet_history.pet = @pet
 
@@ -50,8 +50,8 @@ class PetHistoriesController < ApplicationController
   # PATCH/PUT /pet_histories/1
   # PATCH/PUT /pet_histories/1.json
   def update
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
     respond_to do |format|
       if @pet_history.update(pet_history_params)
         format.html { redirect_to client_pet_pet_history_path(@client, @pet,@pet_history), notice: 'Pet history was successfully updated.' }
@@ -64,8 +64,8 @@ class PetHistoriesController < ApplicationController
   # DELETE /pet_histories/1
   # DELETE /pet_histories/1.json
   def destroy
-    @client = Client.find_by params[:client_id]
-    @pet = Pet.find_by params[:pet_id]
+    @client = Client.find params[:client_id]
+    @pet = Pet.find params[:pet_id]
     @pet_history.destroy
     
     respond_to do |format|
