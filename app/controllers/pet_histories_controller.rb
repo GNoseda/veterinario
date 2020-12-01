@@ -40,7 +40,7 @@ class PetHistoriesController < ApplicationController
 
     respond_to do |format|
       if @pet_history.save
-        format.html { redirect_to client_pet_pet_history_path(@client, @pet,@pet_history), notice: 'Pet history was successfully created.' }
+        format.html { redirect_to client_pet_pet_history_path(@client, @pet,@pet_history), notice: 'Control guardado exitosamente.' }
       else
         format.html { render :new }
       end
@@ -54,7 +54,7 @@ class PetHistoriesController < ApplicationController
     @pet = Pet.find params[:pet_id]
     respond_to do |format|
       if @pet_history.update(pet_history_params)
-        format.html { redirect_to client_pet_pet_history_path(@client, @pet,@pet_history), notice: 'Pet history was successfully updated.' }
+        format.html { redirect_to client_pet_pet_history_path(@client, @pet,@pet_history), notice: 'Control actualizado exitosamente.' }
       else
         format.html { render :edit }
       end
@@ -69,7 +69,7 @@ class PetHistoriesController < ApplicationController
     @pet_history.destroy
     
     respond_to do |format|
-      format.html { redirect_to client_pet_pet_histories_path(@client,@pet), notice: 'Pet history was successfully destroyed.' }
+      format.html { redirect_to client_pet_pet_histories_path(@client,@pet), notice: 'Control eliminado... no ha quedado evidencia alguna' }
      end
   end
 
