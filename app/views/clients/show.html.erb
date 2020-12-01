@@ -1,38 +1,55 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @client.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Max Altura</th>
-      <th>Max Peso</th>
-    </tr>
-  </thead>
-  <% @client.pets.each do |pts| %>
-    <tbody>
+<div class="container">
+  <div class="col-4">
+    <table class="table">
       <tr>
-        <td> <%= pts.name %> </td>
-        <td> <%= pts.max_height %> </td>
-        <td> <%= pts.max_weight %> </td>
+        <td><strong>Nombre:</strong></td>
+        <td><%= @client.name %></td>
       </tr>
-    </tbody>
-  <% end %>
-</table>
+      <tr>
+        <td><strong>Contacto:</strong></td>
+        <td><%= @client.phone %></td>
+      </tr>
+      <tr>
+        <td><strong>Email:</strong></td>
+        <td><%= @client.email %></td>
+      </tr>
+      <tr>
+        <td><strong>Mascotas registradas</strong></td>
+        <td><%= @client.pets.count %></td>
+      </tr>
+    </table>
+  </div>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+  <% if @client.pets.count > 0 %>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Max Altura</th>
+          <th>Max Peso</th>
+        </tr>
+      </thead>
+      <% @client.pets.each do |pts| %>
+        <tbody>
+          <tr>
+            <td> <%= pts.name %> </td>
+            <td> <%= pts.max_height %> </td>
+            <td> <%= pts.max_weight %> </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+    
+  <% else %>
+    <h3>No hay mascotas registradas para este cliente</h3>
+  <% end %>
+  <div class="row">
+    <%= button_to "Registrar mascota", new_client_pet_path(@client), method: "get", class: "mx-2"%>
+    <%= button_to "Atender mascotas", client_pets_path(@client), method: "get", class: "mx-2"%>
+  </div>
+  <br>
+  <p><%= link_to 'Editar', edit_client_path(@client) %></p>
+  <p><%= link_to 'A menú de clientes', clients_path %></p>
+</div>

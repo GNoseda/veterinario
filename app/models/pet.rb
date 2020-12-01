@@ -4,6 +4,11 @@ class Pet < ApplicationRecord
 
   validates :name, :race, :birthdate, :client_id, presence: true
 
+  
+  def get_birthdate
+    self.birthdate.strftime("%d/%m/%Y")
+  end
+  
   def history_count
     self.pet_histories.count
   end

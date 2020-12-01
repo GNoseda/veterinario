@@ -1,5 +1,8 @@
-<h1>New Pet</h1>
+<div class="container">
+    <h2>Nueva mascota de <%= @client.name %> </h2>
+    <br>
+    <%= render 'form', pet: @pet %>
 
-<%= render 'form', pet: @pet %>
-
-<%= link_to 'Back', client_pets_path(@client) %>
+    <br>
+    <%= link_to 'Volver a mascotas', client_pets_path(@client) %>
+</div>

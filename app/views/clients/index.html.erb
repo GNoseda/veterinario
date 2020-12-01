@@ -1,33 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Clients</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Cantidad de mascotas</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clients.each do |client| %>
+<div class="container">
+  <h1>Clientes</h1>
+  <table class="table text-center">
+    <thead>
       <tr>
-        <td><%= client.name %></td>
-        <td><%= client.phone %></td>
-        <td><%= client.email %></td>
-        <td><%= client.pets_count %></td>
-        <td><%= link_to 'Show', client %></td>
-        <td><%= link_to 'Edit', edit_client_path(client) %></td>
-        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th>Contacto</th>
+        <th>Email</th>
+        <th>Cantidad de mascotas</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Client', new_client_path %>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <td><%= client.name %></td>
+          <td><%= client.phone %></td>
+          <td><%= client.email %></td>
+          <td><%= client.pets_count %></td>
+          <td><%= link_to 'Detalles', client %></td>
+          <td><%= link_to 'Editar', edit_client_path(client) %></td>
+          <td><%= link_to 'Eliminar Cliente', client, method: :delete, data: { confirm: 'Seguro de eliminar al cliente? No podrás recuperar su información' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'Nuevo Cliente', new_client_path %>
+</div>

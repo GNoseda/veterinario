@@ -1,6 +1,9 @@
-<h1>Editing Pet</h1>
+<div class="container">
+    <h2>Editar datos de <%= @pet.name%> </h2>
 
-<%= render 'form', pet: @pet %>
-
-<%= link_to 'Show', client_pets_path(@client, @pet) %> |
-<%= link_to 'Back', client_pets_path(@client) %>
+    <%= render 'form', pet: @pet %>
+    <br>
+    <%= link_to 'Detalles', client_pet_path(@client, @pet) %> 
+    <br>
+    <%= link_to 'Mascotas', client_pets_path(@client) %>
+</div>

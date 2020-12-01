@@ -1,33 +1,36 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <h2>Mascotas de <%= @client.name %> </h2>
 
-<h1>Pets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Race</th>
-      <th>Birthdate</th>
-      <th>Visitas</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pets.each do |pet| %>
+  <table class="table text-center">
+    <thead>
       <tr>
-        <td><%= pet.name %></td>
-        <td><%= pet.race %></td>
-        <td><%= pet.birthdate %></td>
-        <td><%= pet.history_count%></td>
-        <td><%= link_to 'Show', client_pet_path(@client, pet) %></td>
-        <td><%= link_to 'Edit', edit_client_pet_path(@client, pet) %></td>
-        <td><%= link_to 'Destroy', client_pet_path(@client,pet), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Fecha de nacimiento</th>
+        <th>Visitas</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @pets.each do |pet| %>
+        <tr>
+          <td><%= pet.name %></td>
+          <td><%= pet.race %></td>
+          <td><%= pet.get_birthdate %></td>
+          <td><%= pet.history_count%></td>
+          <td><%= link_to 'Detalles', client_pet_path(@client, pet) %></td>
+          <td><%= link_to 'Editar', edit_client_pet_path(@client, pet) %></td>
+          <td><%= link_to 'Eliminar', client_pet_path(@client,pet), method: :delete, data: { confirm: 'Estás seguro/a? No se podrá recuperar la información de la mascota' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Pet', new_client_pet_path(@client) %>
+  <br>
+
+  <%= button_to "Registrar nueva mascota", new_client_pet_path(@client), method: "get", class: "mx-2"%>
+  <br>
+  <%= link_to 'Menú de clientes', clients_path %>
+</div>
